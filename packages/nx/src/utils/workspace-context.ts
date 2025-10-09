@@ -68,7 +68,7 @@ export async function multiGlobWithWorkspaceContext(
   globs: string[],
   exclude?: string[]
 ) {
-  if (isOnDaemon() || !daemonClient.enabled()) {
+  if (workspaceRoot === '/virtual' || isOnDaemon() || !daemonClient.enabled()) {
     ensureContextAvailable(workspaceRoot);
     return workspaceContext.multiGlob(globs, exclude);
   }
@@ -80,7 +80,7 @@ export async function hashWithWorkspaceContext(
   globs: string[],
   exclude?: string[]
 ) {
-  if (isOnDaemon() || !daemonClient.enabled()) {
+  if (workspaceRoot === '/virtual' || isOnDaemon() || !daemonClient.enabled()) {
     ensureContextAvailable(workspaceRoot);
     return workspaceContext.hashFilesMatchingGlob(globs, exclude);
   }
@@ -91,7 +91,7 @@ export async function hashMultiGlobWithWorkspaceContext(
   workspaceRoot: string,
   globGroups: string[][]
 ) {
-  if (isOnDaemon() || !daemonClient.enabled()) {
+  if (workspaceRoot === '/virtual' || isOnDaemon() || !daemonClient.enabled()) {
     ensureContextAvailable(workspaceRoot);
     return workspaceContext.hashFilesMatchingGlobs(globGroups);
   }
